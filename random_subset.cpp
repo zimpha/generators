@@ -13,8 +13,8 @@ std::vector<Int> random_subset(Int n, int k)
         return iterator == count.end() ? 0 : iterator->second;
     };
     for (auto i = 0; i < k; ++ i) {
-        auto rank = rnd.next(1, n - i);
-        auto low = 0;
+        auto rank = rnd.next(Int(1), n - i);
+        auto low = Int();
         auto high = n - 1;
         while (low < high) {
             auto middle = low + high >> 1;
