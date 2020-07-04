@@ -193,12 +193,14 @@ void relabel_vertices(int n, edge_t& edges) {
   for (auto &e: edges) {
     e.first = label[e.first];
     e.second = label[e.second];
+    if (rnd.next(2)) std::swap(e.first, e.second);
   }
+  shuffle(edges.begin(), edges.end());
 }
 
 // Convert an unrooted tree to a rooted tree
 // If `relabel = 1`, the result `parent` array will satisfy: `parent[i] < i`.
-// Otherwise, `parent[root]` will be `-1`.`
+// Otherwise, `parent[root]` will be `-1`.
 std::vector<int> convert_rooted(int n, const edge_t& edges, int root, bool relabel = false) {
   std::vector<int> label(n);
   std::vector<std::vector<int>> adj(n);
