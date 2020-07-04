@@ -1,7 +1,9 @@
 # Generators: library for generating testcases of competitive programming problems
 
-+ [Utilities](/doc/util.md)
-+ [Graphs](/doc/graph.md)
-+ [Trees](/doc/tree.md)
-+ [Strings](/doc/string.md)
-+ [Geometry](/doc/geo.md)
++ [Utilities](/docs/util.md)
++ [Graphs](/docs/graph.md)
++ [Trees](/docs/tree.md)
++ [Strings](/docs/string.md)
++ [Geometry](/docs/geo.md)
+
+All the functions are well tested. See the [README](/tests/README.md) in tests for more details.
