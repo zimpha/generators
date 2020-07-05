@@ -1,4 +1,20 @@
-# Generator For Trees
+# Trees Generation
+
+A class `Tree` with some useful methods and a set of generators are provided in `tree.h`. Here is an example to generate a random tree, relabel the vertices, and convert it to rooted tree.
+
+```cpp
+auto tree = gen::tree::random(n);
+tree.relabel();
+auto parents = tree.parents(0 /* root */, true /* relabel */);
+```
+
+## Generators
+
+### `Tree random(int n)`
+
+This function will generate a tree with $n$ vertex using Prüfer sequence.
+
+An array with length $n-2$ will be generated randomly and it will be converted to a tree using the algorithm described in [Wikipedia](https://en.wikipedia.org/wiki/Pr%C3%BCfer_sequence#Algorithm_to_convert_a_Pr%C3%BCfer_sequence_into_a_tree).
 
 ### `rand_with_prim(int n, int elongation = 0)`
 
@@ -16,13 +32,6 @@ Initially, there are no edges among the $n$ vertex. We will try to run the below
 + If $u$ and $v$ are not in the same connected component, add an edge between. Otherwise, repeated the steps.
 
 With $elongation = 1$, the expectation of diamater is $O(\sqrt{n})$. With $elongation = n$, the expectation of diamater may be $O(n)$.
-
-
-### `rand_with_prufer(int n)`
-
-This function will generate a tree with $n$ vertex using Prüfer sequence.
-
-An array with length $n-2$ will be generated randomly and it will be converted to a tree using the algorithm described in [Wikipedia](https://en.wikipedia.org/wiki/Pr%C3%BCfer_sequence#Algorithm_to_convert_a_Pr%C3%BCfer_sequence_into_a_tree).
 
 ### `rand_binary_inversion_table(int n, std::vector<int> &label)`
 
@@ -75,16 +84,20 @@ For each vertex $i$ from $1$ to $m$, it is connected to vertex $0$. For each of 
 
 With $m=n-1$, the generated tree will be a star.
 
-## Utilities For Trees
+## Methods of `Tree`
 
-### `relabel_vertices(int n, edge_t& edges)`
+### `void relabel()`
 
 + Relabel vertices in random order.
 + Random shuffle the order of edges.
 + Randomly swap the endpoints of each edge.
 
-### `convert_rooted(int n, const edge_t& edges, int root, bool relabel = false)`
+### `std::vector<int> parents(int root, bool relabel = false)`
 
 This function will generate a rooted tree using the $edges$ of the tree with the given root vertex $root$.
 
 If $relabel = 1$, the result $parent$ array will satisfy: $parent[i] < i$. Otherwise, $parent[root]$ will be $-1$.
+
+### `void link(int u, const Tree &rhs, int v)`
+
+### `void glue(int u, const Tree &rhs, int v)`
